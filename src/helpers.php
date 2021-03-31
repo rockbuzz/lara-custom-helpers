@@ -78,8 +78,8 @@ if (!function_exists('sum_times')) {
     }
 }
 
-if (!function_exists('visiteIncrement')) {
-    function visiteIncrement($model, $column = 'view', $viewedKey = 'viewed_post')
+if (!function_exists('visite_increment')) {
+    function visite_increment($model, $column = 'view', $viewedKey = 'viewed_post')
     {
         $viewed = session()->get($viewedKey, []);
         if (!in_array($model->id, $viewed)) {
@@ -94,10 +94,10 @@ if (!function_exists('has_br_datetime_format')) {
     function has_br_datetime_format(string $date, bool $withSeconds = false)
     {
         if ($withSeconds) {
-            return !!preg_match("/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/", $date);
+            return (bool)preg_match("/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/", $date);
         }
 
-        return !!preg_match("/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/", $date);
+        return (bool)preg_match("/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/", $date);
     }
 }
 
@@ -105,7 +105,7 @@ if (!function_exists('has_br_date_format')) {
 
     function has_br_date_format(string $date)
     {
-        return !!preg_match("/^(\d{2})\/(\d{2})\/(\d{4})$/", $date);
+        return (bool)preg_match("/^(\d{2})\/(\d{2})\/(\d{4})$/", $date);
     }
 }
 
@@ -114,10 +114,10 @@ if (!function_exists('has_us_datetime_format')) {
     function has_us_datetime_format(string $date, bool $withSeconds = false)
     {
         if ($withSeconds) {
-            return !!preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/", $date);
+            return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/", $date);
         }
 
-        return !!preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/", $date);
+        return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/", $date);
     }
 }
 
@@ -126,10 +126,10 @@ if (!function_exists('has_us_datetime_local_format')) {
     function has_us_datetime_local_format(string $date, bool $withSeconds = false)
     {
         if ($withSeconds) {
-            return !!preg_match("/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/", $date);
+            return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/", $date);
         }
 
-        return !!preg_match("/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/", $date);
+        return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/", $date);
     }
 }
 
@@ -137,7 +137,7 @@ if (!function_exists('has_us_date_format')) {
 
     function has_us_date_format(string $date)
     {
-        return !!preg_match("/^(\d{4})-(\d{2})-(\d{2})$/", $date);
+        return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2})$/", $date);
     }
 }
 
@@ -168,8 +168,8 @@ if (!function_exists('create_us_date_time')) {
     }
 }
 
-if (!function_exists('getIconByMime')) {
-    function getIconByMime(string $mime, string $class = null)
+if (!function_exists('getIcon_by_mime')) {
+    function getIcon_by_mime(string $mime, string $class = null)
     {
         switch ($mime) {
             case 'image/jpeg':
@@ -232,14 +232,14 @@ if (!function_exists('active_by_url')) {
     }
 }
 
-if (!function_exists('activeByRoute')) {
+if (!function_exists('active_by_route')) {
     /**
      * @param string|array $routeName
      * @param string $class
      * @return string
      * @deprecated
      */
-    function activeByRoute($routeName, string $class = 'active'): string
+    function active_by_route($routeName, string $class = 'active'): string
     {
         return is_current_route($routeName) ? $class : '';
     }
