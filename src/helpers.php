@@ -5,8 +5,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('get_video_embed_url')) {
-    function get_video_embed_url(string $url, array $options = [])
-    {
+    function get_video_embed_url(string $url, array $options = []) {
         $default = asset('images/abtd.png');
 
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
@@ -41,13 +40,7 @@ if (!function_exists('get_video_embed_url')) {
 }
 
 if (!function_exists('image')) {
-    /**
-     * @param string $filePatch
-     * @param string|null $template
-     * @return string
-     */
-    function image(string $filePatch, string $template = null)
-    {
+    function image(string $filePatch, string $template = null) {
         $template = $template ?? 'default';
 
         if (!config("imagecache.templates.{$template}")) {
@@ -63,8 +56,7 @@ if (!function_exists('image')) {
 }
 
 if (!function_exists('sum_times')) {
-    function sum_times(...$times)
-    {
+    function sum_times(...$times) {
         $minutes = 0;
         foreach ($times as $time) {
             list($hour, $minute) = explode(':', $time);
@@ -79,8 +71,7 @@ if (!function_exists('sum_times')) {
 }
 
 if (!function_exists('visite_increment')) {
-    function visite_increment($model, $column = 'view', $viewedKey = 'viewed_post')
-    {
+    function visite_increment($model, $column = 'view', $viewedKey = 'viewed_post') {
         $viewed = session()->get($viewedKey, []);
         if (!in_array($model->id, $viewed)) {
             $model->increment($column);
@@ -91,8 +82,7 @@ if (!function_exists('visite_increment')) {
 
 if (!function_exists('has_br_datetime_format')) {
 
-    function has_br_datetime_format(string $date, bool $withSeconds = false)
-    {
+    function has_br_datetime_format(string $date, bool $withSeconds = false) {
         if ($withSeconds) {
             return (bool)preg_match("/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/", $date);
         }
@@ -103,16 +93,14 @@ if (!function_exists('has_br_datetime_format')) {
 
 if (!function_exists('has_br_date_format')) {
 
-    function has_br_date_format(string $date)
-    {
+    function has_br_date_format(string $date) {
         return (bool)preg_match("/^(\d{2})\/(\d{2})\/(\d{4})$/", $date);
     }
 }
 
 if (!function_exists('has_us_datetime_format')) {
 
-    function has_us_datetime_format(string $date, bool $withSeconds = false)
-    {
+    function has_us_datetime_format(string $date, bool $withSeconds = false) {
         if ($withSeconds) {
             return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/", $date);
         }
@@ -123,8 +111,7 @@ if (!function_exists('has_us_datetime_format')) {
 
 if (!function_exists('has_us_datetime_local_format')) {
 
-    function has_us_datetime_local_format(string $date, bool $withSeconds = false)
-    {
+    function has_us_datetime_local_format(string $date, bool $withSeconds = false) {
         if ($withSeconds) {
             return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})$/", $date);
         }
@@ -135,16 +122,14 @@ if (!function_exists('has_us_datetime_local_format')) {
 
 if (!function_exists('has_us_date_format')) {
 
-    function has_us_date_format(string $date)
-    {
+    function has_us_date_format(string $date) {
         return (bool)preg_match("/^(\d{4})-(\d{2})-(\d{2})$/", $date);
     }
 }
 
 if (!function_exists('create_us_date_time')) {
 
-    function create_us_date_time(string $date = null, bool $withSeconds = false): ?Carbon
-    {
+    function create_us_date_time(string $date = null, bool $withSeconds = false): ?Carbon {
         if (!$date) {
             return null;
         }
@@ -169,8 +154,7 @@ if (!function_exists('create_us_date_time')) {
 }
 
 if (!function_exists('getIcon_by_mime')) {
-    function getIcon_by_mime(string $mime, string $class = null)
-    {
+    function getIcon_by_mime(string $mime, string $class = null) {
         switch ($mime) {
             case 'image/jpeg':
             case 'image/png':
@@ -198,12 +182,7 @@ if (!function_exists('getIcon_by_mime')) {
 }
 
 if (!function_exists('is_current_route')) {
-    /**
-     * @param string|array $routeName
-     * @return bool
-     */
-    function is_current_route($routeName): bool
-    {
+    function is_current_route($routeName): bool {
         $currentRoute = Route::currentRouteName();
 
         if (is_string($routeName)) {
@@ -221,38 +200,19 @@ if (!function_exists('is_current_route')) {
 }
 
 if (!function_exists('active_by_url')) {
-    /**
-     * @param string $url
-     * @param string $class
-     * @return string
-     */
-    function active_by_url(string $url, string $class = 'active'): string
-    {
+    function active_by_url(string $url, string $class = 'active'): string {
         return request()->fullUrlIs($url) ? $class : '';
     }
 }
 
 if (!function_exists('active_by_route')) {
-    /**
-     * @param string|array $routeName
-     * @param string $class
-     * @return string
-     * @deprecated
-     */
-    function active_by_route($routeName, string $class = 'active'): string
-    {
+    function active_by_route($routeName, string $class = 'active'): string {
         return is_current_route($routeName) ? $class : '';
     }
 }
 
 if (!function_exists('mask')) {
-    /**
-     * @param $value
-     * @param string $mask
-     * @return string
-     */
-    function mask($value, string $mask): string
-    {
+    function mask($value, string $mask): string {
         $masked = '';
 
         if (!empty($value)) {
@@ -277,13 +237,7 @@ if (!function_exists('mask')) {
 }
 
 if (!function_exists('unmask')) {
-    /**
-     * @param string $value
-     * @param array $unmask
-     * @return string
-     */
-    function unmask(string $value, array $unmask): string
-    {
+    function unmask(string $value, array $unmask): string {
         if (empty($value)) {
             return '';
         }
@@ -291,14 +245,8 @@ if (!function_exists('unmask')) {
     }
 }
 
-if (!function_exists('active')) {
-    /**
-     * @param $active
-     * @param string $classPrefix
-     * @return string
-     */
-    function displayActive($active, string $classPrefix = 'label'): string
-    {
+if (!function_exists('display_active')) {
+    function display_active($active, string $classPrefix = 'label'): string {
         if ($active) {
             return "<small class='{$classPrefix} {$classPrefix}-success'>Sim</small>";
         }
@@ -308,67 +256,39 @@ if (!function_exists('active')) {
 }
 
 if (!function_exists('string_title')) {
-    /**
-     * Convert a value to title case.
-     *
-     * @param string $value
-     * @return string
-     */
-    function string_title(string $value): string
-    {
+    function string_title(string $value): string {
         return Str::title($value);
     }
 
     if (!function_exists('string_limit')) {
-        /**
-         * Limit the number of characters in a string.
-         *
-         * @param string $value
-         * @param int $limit
-         * @param string $end
-         * @return string
-         */
-        function string_limit(string $value, int $limit = 100, string $end = '...')
-        {
+        function string_limit(string $value, int $limit = 100, string $end = '...') {
             return Str::limit($value, $limit, $end);
         }
     }
 }
 
 if (!function_exists('string_slug')) {
-    /**
-     * Generate a URL friendly "slug" from a given string.
-     *
-     * @param string $title
-     * @param string $separator
-     * @param string $language
-     * @return string
-     */
-    function string_slug($title, $separator = '-', $language = 'en')
-    {
+    function string_slug($title, $separator = '-', $language = 'en') {
         return Str::slug($title, $separator, $language);
     }
 }
 
 if (!function_exists('convert_to_brl')) {
-    function convert_to_brl($moneyInCents, $prefix = null)
-    {
+    function convert_to_brl($moneyInCents, $prefix = null) {
         $money = $moneyInCents / 100;
         return "R$ {$prefix}" . number_format($money, 2, ',', '.');
     }
 }
 
 if (!function_exists('convert_to_money')) {
-    function convert_to_money($moneyInCents)
-    {
+    function convert_to_money($moneyInCents) {
         $money = $moneyInCents / 100;
         return number_format($money, 2, ',', '.');
     }
 }
-
+ 
 if (!function_exists('convert_money_in_cents')) {
-    function convert_money_in_cents($money)
-    {
+    function convert_money_in_cents($money) {
         return preg_replace('/[^0-9]/', '', $money);
     }
 }
