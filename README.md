@@ -4,7 +4,7 @@ Laravel custom helpers
 
 ## Requirements
 
-PHP: >=7.2
+PHP: >=7.3
 
 ## Install
 
@@ -14,10 +14,7 @@ $ composer require rockbuzz/lara-custom-helpers
 
 ## Usage
 ```php
-get_video_embed_url(string $url, array $options = []);
-image(string $filePatch, string $template = null);
 sum_times(...$times);
-visite_increment($model, $column = 'view', $viewedKey = 'viewed_post');
 has_br_datetime_format(string $date, bool $withSeconds = false);
 has_br_date_format(string $date);
 has_us_datetime_format(string $date, bool $withSeconds = false);

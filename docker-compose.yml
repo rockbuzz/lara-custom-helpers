@@ -1,10 +1,9 @@
-version: '2'
+version: '3'
 services:
   app:
-    container_name: package-name
+    container_name: lara-helpers
     build:
       context: .
       dockerfile: Dockerfile
-    restart: always
     volumes:
       - ./:/var/www
