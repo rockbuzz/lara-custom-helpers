@@ -7,10 +7,11 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Route;
 
 if (!function_exists('sum_times')) {
-    function sum_times(...$times)
-    {
+    function sum_times(...$times) {
+
         $minutes = 0;
         foreach ($times as $time) {
+            if (!has_time_with_seconds($time)) throw new InvalidArgumentException();
             list($hour, $minute) = explode(':', $time);
             $minutes += $hour * 60;
             $minutes += $minute;
@@ -19,6 +20,14 @@ if (!function_exists('sum_times')) {
         $minutes -= $hours * 60;
 
         return sprintf('%02d:%02d', $hours, $minutes);
+    }
+}
+
+if (!function_exists('has_time_with_seconds')) {
+
+    function has_time_with_seconds(string $time): bool
+    {
+        return (bool)preg_match("/^(\d{2}):(\d{2})$/", $time);
     }
 }
 

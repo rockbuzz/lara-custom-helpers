@@ -14,6 +14,7 @@ $ composer require rockbuzz/lara-custom-helpers
 
 ## Usage
 ```php
+has_time_with_seconds(string $time): bool;
 sum_times(...$times);
 has_br_datetime_format(string $date, bool $withSeconds = false);
 has_br_date_format(string $date);

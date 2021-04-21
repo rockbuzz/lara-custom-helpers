@@ -192,6 +192,21 @@ class HelpersTest extends TestCase
     }
 
     /** @test */
+    public function has_time_with_seconds()
+    {
+        $this->assertFalse(has_time_with_seconds('06:15:00'));
+        $this->assertTrue(has_time_with_seconds('06:15'));
+    }
+
+    /** @test */
+    public function sum_times_should_be_error()
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        sum_times('06:15:00', '06:15');
+    }
+
+    /** @test */
     public function sum_times()
     {
         $this->assertEquals('12:30', sum_times('06:15', '06:15'));
