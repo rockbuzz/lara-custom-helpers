@@ -12,9 +12,6 @@ if (!function_exists('sum_times')) {
 
         $minutes = 0;
         foreach ($times as $time) {
-            if (!has_time_with_seconds($time)) {
-                throw new InvalidArgumentException();
-            }
             list($hour, $minute) = explode(':', $time);
             $minutes += $hour * 60;
             $minutes += $minute;
